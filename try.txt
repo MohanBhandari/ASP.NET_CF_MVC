@@ -4,33 +4,3 @@ add-migration -ConfigurationTypeName APTAEventManagement.Migrations.APTA.Configu
 
 
 update-database -force-ConfigurationTypeName APTAEventManagement.Migrations.APTA.Configuration
-
-context.Organiser.AddOrUpdate(
-                  o => o.OrganiserId, DummyData.getOrganiser().ToArray()
-                    );
-            context.SaveChanges();
-            context.Conference.AddOrUpdate(
-                c => new { c.ConferenceName, c.ConferenceTitle, c.ConferenceDate }, DummyData.getConference(context).ToArray()
-                );
-            context.SaveChanges();
-            context.Activities.AddOrUpdate(
-                e => new { e.EventName, e.EventDetails }, DummyData.getEvent(context).ToArray()
-                );
-            context.SaveChanges();
-            context.Student.AddOrUpdate(
-                s => new { s.StudentName, s.StudentPhone, s.StudentEmail }, DummyData.getStudent(context).ToArray()
-                );
-
-            context.SaveChanges();
-
-[Display(Name = "Activity ID")]
-        public int ActivityId { get; set; }
-         
-        [Display(Name = "Activity Name")]
-        public string ActivityName { get; set; }
-
-
-        [Display(Name = "Actitity Details")]
-        public string ActivityDetails { get; set; }
-        public int ConferenceId { get; set; } //primary key of Organizer is foreign key of 
-        public virtual Conference Conference { get; set; }
